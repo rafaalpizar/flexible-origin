@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Upload | Flexible-Origin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+
+<div class="page-header">
+    <h1>Flexible-Origin <small>Upload Page</small></h1>
+</div>
+
+<!-- Bootstrap FAQ - START -->
+<div class="container">
+    <br />
+
+    <div class="panel-group" id="accordion">
+        <div class="faqHeader">General information</div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">How to upload a file?</a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <table>
+                      <col width="120">
+                      <col width="400">
+                      <tr>
+                        <td valign="top"><strong>Goal</strong></td>
+                        <td valign="top">You can upload files to your <strong>Flexible Origin</strong> instance to any path you want</td>
+                      </tr>
+                      <tr>
+                        <td valign="top"><strong>Upload path</strong></td>
+                        <td valign="top">Please select your upload path without initial slash and with trailing slash. The name of the file is specified by the asset you have uploaded so don't try to explicitly define a filename</td>
+                      </tr>
+                      <tr>
+                        <td valign="top"><strong>Example</strong></td>
+                        <td valign="top">Path: my/directory/is/very/cool/</td>
+                      </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="faqHeader">Upload panel</div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Ready to upload!</a>
+                </h4>
+            </div>
+
+            <div id="collapseTwo" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <table>
+                      <col width="120">
+                      <col width="400">
+                      <form action = "http://{{ host }}{{ path }}" method = "POST" enctype = "multipart/form-data">
+                        <tr>
+                           <td valign="top"><strong>Choose file</strong></td>
+                           <td valign="top"><input type = "file" name = "file" /><br/></td>
+                        </tr>
+                        <tr>
+                           <td valign="top"><strong>Path</strong><br/><br/></td>
+                           <td valign="top"><input type = "text" name = "path"/></td>
+                        </tr>
+                        <tr>
+                           <td valign="top"><strong>Submit</strong></td>
+                           <td valign="top"><input type = "submit"/><br/></td>
+                        </tr>
+                      </form>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .faqHeader {
+        font-size: 27px;
+        margin: 20px;
+    }
+
+    .panel-heading [data-toggle="collapse"]:after {
+        font-family: 'Glyphicons Halflings';
+        content: "\e072"; /* "play" icon */
+        float: right;
+        color: #F58723;
+        font-size: 18px;
+        line-height: 22px;
+        /* rotate "play" icon from > (right arrow) to down arrow */
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+    }
+
+    .panel-heading [data-toggle="collapse"].collapsed:after {
+        /* rotate "play" icon from > (right arrow) to ^ (up arrow) */
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        transform: rotate(90deg);
+        color: #454444;
+    }
+</style>
+
+<!-- Bootstrap FAQ - END -->
+
+</div>
+
+</body>
+</html>
