@@ -26,16 +26,22 @@ from fologger import FOLogger
 from foerrors import HeaderError
 import os
 from werkzeug import secure_filename
+from random import randint
 
+# Define the script's root path
+prog_path = os.path.dirname(os.path.realpath(__file__))
 
 app = Flask(__name__)
-app.config['SERVER_NAME'] = 'localhost:5000'
-LOG_FILE = 'static/fo.log'
-LOG_LEVEL = {'error': 40, 'warning': 30, 'info': 20, 'debug': 10}['debug']
-flex_controller = FOController(log_file=LOG_FILE, log_level=LOG_LEVEL)
-
-obj_log = FOLogger('API', LOG_FILE, LOG_LEVEL)
+# app.config['SERVER_NAME'] = 'localhost:5000'
+LOG_FILE = '{}/static/fo.log'.format(prog_path)
+LOG_LEVEL = {'error': 40, 'warning': 30, 'info': 20, 'debug': 10}['info']
+# Init the Logger object
+obj_log = FOLogger('FlexOrigin', LOG_FILE, LOG_LEVEL)
 logger = obj_log.logger
+
+# Starts the controller
+flex_controller = FOController(log_object=obj_log)
+
 
 
 # Exception Class
@@ -127,9 +133,11 @@ class InvalidUsage(Exception):
 # Exception Reguster
 @app.errorhandler(InvalidUsage)
 def handle_invalid_usage(error):
-    response = jsonify(error.to_dict())
+    error_dict = error.to_dict()
+    response = jsonify(error_dict)
     response.status_code = error.status_code
     response.headers['Server'] = 'FlexibleOrigin'
+    response.headers['X-FO-Error'] = error_dict
     return response
 
 
@@ -148,6 +156,13 @@ def flexorigin(subpath=None):
     html res_test
     """
 
+    # Generate the Reference ID number
+    referenceid = randint(10000, 99999)
+    reference_str = 'RefID:{}'.format(referenceid)
+
+    # Set Log ReferenceID
+    obj_log.log_name = reference_str
+
     http_request = request
     # default response: empty body and status code 200
     # TODO: Import defaults from config file
@@ -160,16 +175,20 @@ def flexorigin(subpath=None):
     except HeaderError as e:
         host_name = http_request.headers['host']
         desc = {'X-FO header problem': 'Bad name or value',
-                'Help': 'Go to {}/static/help.html'.format(host_name)}
+                'Help': 'Go to {}/static/help.html'.format(host_name),
+                'RefID': referenceid}
         raise InvalidUsage(e.args[0], payload=desc)
     except Exception as e:
-        raise InvalidUsage(e.args[0])
+        desc = {'RefID': referenceid}
+        raise InvalidUsage(e.args[0], payload=desc)
+    else:
+        http_response.headers['X-FO-RefID'] = referenceid
     return http_response
 
 
 @app.route('/x-fo/pushasset', methods=['GET', 'POST'])
 def uploader():
-    _user_path = 'user/'
+    _user_path = '{}/user/'.format(prog_path)
     # TODO: Refactor code
     if request.method == 'POST':
         savepath = _user_path

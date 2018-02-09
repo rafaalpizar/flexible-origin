@@ -21,9 +21,6 @@ from fobody import FOBody
 from foaction import FOAction
 from foerrors import HeaderError
 
-# import logging
-from fologger import FOLogger
-
 
 class FOController(object):
     # Must be in lower case
@@ -34,20 +31,20 @@ class FOController(object):
     _x_fo_headers = dict()
 #    _x_fo_headers_list = list()
 
-    def __init__(self, log_file=None, log_level=40):
+    def __init__(self, log_object=None):
         """Start the request processing
 
         This function starts the Flexible Origin work
 
         Keywords:
-        log_file - file to store logs
-        log_level - verbosity
+        log_object - logger object
 
         Returns:
         None
         """
-        self._log_obj = FOLogger('FOController', log_file, log_level)
+        self._log_obj = log_object
         self._logger = self._log_obj.logger
+        self._logger.debug('Running Flexible Origin Controller')
 
     @property
     def request(self):
@@ -105,7 +102,7 @@ class FOController(object):
     def _load_x_fo_headers(self):
         """extract x-fo-* headers from request
 
-        extract the x-fo headers from request, change to lower case
+        Extracts the x-fo headers from request, change to lower case
         and store those in a new dictionary and list:
 
         self._x_fo_headers -- dict for header information
@@ -117,7 +114,7 @@ class FOController(object):
         self._x_fo_headers.clear()
         for header, value in self.request.headers.items():
             header_low = header.lower()
-            self._logger.debug('Header: %s, value: %s', header_low, value)
+            self._logger.info('Header: %s, value: %s', header_low, value)
             if self._HEADER_PREFIX in header_low:
                 self._x_fo_headers[header_low] = value
 #                self._x_fo_headers_list.append(header_low)
@@ -139,15 +136,6 @@ class FOController(object):
         Returns:
         0 -- int
         """
-        self.request = request
-        self.response = response
-        try:
-            self._load_x_fo_headers()
-        except HeaderError as e:
-            # If an error is found, a default header is set
-            m = 'X-FO-Warning={}'.format(e.args[0])
-            self._x_fo_headers['x-fo-header-add'] = m
-            self._x_fo_headers['x-fo-body-info'] = 'html'
 
         def class_selector(x_fo_header_name):
             """ maps the header name with the python class """
@@ -171,8 +159,21 @@ class FOController(object):
                 raise HeaderError(m)
             return fo_class_case
 
+        self.request = request
+        self.response = response
+        try:
+            self._load_x_fo_headers()
+        except HeaderError as e:
+            # If an error is found, a default header is set
+            m = 'X-FO-Warning={}'.format(e.args[0])
+            self._x_fo_headers['x-fo-header-add'] = m
+            self._x_fo_headers['x-fo-body-info'] = 'html'
+
+        # Log the body contents
+        self._logger.info("Body: %s", self.request.data)
+
         for fo_header_name, fo_header_value in self._x_fo_headers.items():
-            fo_class = class_selector(fo_header_name)()
+            fo_class = class_selector(fo_header_name)(log_object=self._log_obj)
             fo_method_name = fo_header_name.split('-')[3]
             r = getattr(fo_class, fo_method_name)(self.request,
                                                   self.response,

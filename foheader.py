@@ -18,11 +18,18 @@ from foerrors import HeaderError
 class FOHeader(object):
     """Object to handle headers in Flexible Origin"""
 
-    def __init__(self):
-        """Starts the object
-        init stuff
+    def __init__(self, log_object=None):
+        """Init the object
+
+        Keywords:
+        log_object - logger object
+
+        Returns:
+        None
         """
-        pass
+        self._log_obj = log_object
+        self._logger = self._log_obj.logger
+        self._logger.debug('Running Flexible Origin header modification')
 
     def add(self, request, response, new_header):
         """Adds a header to response object

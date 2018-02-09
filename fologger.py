@@ -17,6 +17,8 @@ import logging
 class FOLogger(object):
     """ Cusom Logging class """
 
+    _logger = None
+
     def __init__(self, log_name='LogName', log_file=None, log_level=40):
         """Init Logging parameters
 
@@ -50,7 +52,20 @@ class FOLogger(object):
         Returns:
         0 -- int
         """
+        # Sets class field
         self._log_name = log_name
+
+        # if logger object exits, rename it
+        if self._logger is not None:
+            old_factory = logging.getLogRecordFactory()
+
+            def record_factory(*args, **kwargs):
+                record = old_factory(*args, **kwargs)
+                record.name = log_name
+                return record
+
+            logging.setLogRecordFactory(record_factory)
+
         return 0
 
     @property
@@ -91,6 +106,8 @@ class FOLogger(object):
         0 -- int
         """
         self._log_level = log_level
+        if self._logger is not None:
+            self._logger.setLevel(log_level)
         return 0
 
     def _log_init(self):

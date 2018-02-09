@@ -18,19 +18,28 @@ from flask import send_file, render_template
 import os
 import re
 
+prog_path = os.path.dirname(os.path.realpath(__file__))
+
 
 class FOBody(object):
     """Object to handle Response Body in Flexible Origin"""
 
-    _HELP_FILE = 'static/help.html'
-    _LOG_FILE = 'static/fo.log'
+    _HELP_FILE = '{}/static/help.html'.format(prog_path)
+    _LOG_FILE = '{}/static/fo.log'.format(prog_path)
 
-    def __init__(self):
+    def __init__(self, log_object=None):
         """Init the object
 
-        Nothing to do yet
+        Keywords:
+        log_object - logger object
+
+        Returns:
+        None
         """
-        pass
+        self._log_obj = log_object
+        self._logger = self._log_obj.logger
+        self._logger.debug('Running Flexible Origin body modification')
+
 
     def _header_to_json(self, headers):
         """Read headers dictionary an creates a json format string
@@ -225,7 +234,7 @@ class FOBody(object):
         response.data = body.data
         return response
 
-    def log(self, request, response, lines):
+    def loglines(self, request, response, lines):
         """Return log lines in response body
         Keyword Arguments:
         request  -- request object
@@ -250,7 +259,7 @@ class FOBody(object):
         start = len(log_lines) - num_lines
         body = ''
         while len(log_lines) > start:
-            body += log_lines.pop()
+            body = log_lines.pop() + body
         response.data = body
         return response
 

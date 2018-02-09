@@ -11,6 +11,8 @@ Change log:
 2017-11-24 - First version
 '''
 
+from foerrors import HeaderError
+
 
 class FOStatusCode(object):
     """Object to handle Response Status Code in Flexible Origin"""
@@ -18,11 +20,18 @@ class FOStatusCode(object):
     _MIN_STATUS_VALUE = 0
     _MAX_STATUS_VALUE = 599
 
-    def __init__(self):
+    def __init__(self, log_object=None):
         """Init the object
-        Nothing to do yet
+
+        Keywords:
+        log_object - logger object
+
+        Returns:
+        None
         """
-        pass
+        self._log_obj = log_object
+        self._logger = self._log_obj.logger
+        self._logger.debug('Running Flexible Origin status code modification')
 
     def define(self, request, response, new_status_code):
         """Sets the response status code
@@ -36,7 +45,13 @@ class FOStatusCode(object):
         response   -- altered response object
         """
         error = False
-        status_value = int(new_status_code)
+        try:
+            status_value = int(new_status_code)
+        except:
+            m = 'The Status Code value {} is invalid, '
+            m += 'it must be a positive integer.'
+            m = m.format(new_status_code)
+            raise HeaderError(m)
         if status_value < self._MIN_STATUS_VALUE:
             error = True
         if status_value > self._MAX_STATUS_VALUE:
