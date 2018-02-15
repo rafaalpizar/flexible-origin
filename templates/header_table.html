@@ -3,7 +3,13 @@
     <title>Request Headers</title>
   </head>
   <body>
-  <h1>Headers from Request</h1><br>
-  {{ table|safe }}
+    {% if hostname %}
+    <h1>Headers from Request {{ hostname }}</h1><br>
+    {% else %}
+    <h1>Headers from Request</h1><br>
+    {% endif %}
+    {{ table|safe }}
+    <br>
+    <a href="/static/help.html">Flexible Origin Help</a>
   </body>
 </html>
