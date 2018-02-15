@@ -119,9 +119,10 @@ class FOBody(object):
             strbody += '</root>'
             return strbody
 
-        def to_html(headers):
+        def to_html(hostname, headers):
             strtable = self._header_to_html(headers)
-            html_res = render_template('header_table.html', table=strtable)
+            html_res = render_template('header_table.html',
+                                       hostname=hostname, table=strtable)
             return html_res
 
         body = ''
@@ -132,11 +133,12 @@ class FOBody(object):
             m += 'Supported formats are: {}'
             m = m.format(strformat, ','.join(supported_formats))
             raise HeaderError(m)
+        hostname = request.host
         body = {
             'json': to_json(headers_dict),
             'plain': to_plain(headers_dict),
             'xml': to_xml(headers_dict),
-            'html': to_html(headers_dict)
+            'html': to_html(hostname, headers_dict)
             }[strformat]
         response.data = body
         return response
@@ -178,9 +180,10 @@ class FOBody(object):
             strbody += '</root>'
             return strbody
 
-        def to_html(headers):
+        def to_html(hostname, headers):
             strtable = self._header_to_html(headers)
-            html_res = render_template('request_info.html', table=strtable)
+            html_res = render_template('request_info.html',
+                                       hostname=hostname, table=strtable)
             return html_res
 
         def to_help():
@@ -200,11 +203,12 @@ class FOBody(object):
             m += 'Supported formats are: {}'
             m = m.format(strformat, ','.join(supported_formats))
             raise HeaderError(m)
+        hostname = request.host
         body = {
             'json': to_json(headers_dict),
             'plain': to_plain(headers_dict),
             'xml': to_xml(headers_dict),
-            'html': to_html(headers_dict),
+            'html': to_html(hostname, headers_dict),
             'help': to_help()
             }[strformat]
         response.data = body

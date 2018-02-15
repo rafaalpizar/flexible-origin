@@ -3,7 +3,13 @@
     <title>Request Information</title>
   </head>
   <body>
-  <h1>Request Information</h1><br>
-  {{ table|safe }}
+    {% if hostname %}
+    <h1>Request Information {{ hostname }}</h1><br>
+    {% else %}
+    <h1>Request Information</h1><br>
+    {% endif %}
+    {{ table|safe }}
+    <br>
+    <a href="/static/help.html">Flexible Origin Help</a>
   </body>
 </html>
