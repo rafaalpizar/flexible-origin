@@ -106,7 +106,7 @@ BUG_REPORT_URL="http://bugs.launchpad.net/ubuntu/"
 
 12. Apache VHost configuration
     ```
-     \# Python virtual environment
+     # Python virtual environment
      WSGIDaemonProcess flexorigin user=ubuntu group=ubuntu threads=5
 
      <VirtualHost *:80>
