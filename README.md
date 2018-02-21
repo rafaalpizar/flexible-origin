@@ -1,29 +1,24 @@
-# Flexible Origin Instalation Procedure with Apache2
-
-0. OS
-
-> uname -a
+# Instalation Tested on
 Linux ip-172-31-36-246 3.13.0-141-generic #190-Ubuntu SMP Fri Jan 19 12:52:38 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
 
-> 
-```
-$ cat /etc/*release*
-DISTRIB_ID=Ubuntu
-DISTRIB_RELEASE=14.04
-DISTRIB_CODENAME=trusty
-DISTRIB_DESCRIPTION="Ubuntu 14.04.5 LTS"
-NAME="Ubuntu"
-VERSION="14.04.5 LTS, Trusty Tahr"
-ID=ubuntu
-ID_LIKE=debian
-PRETTY_NAME="Ubuntu 14.04.5 LTS"
-VERSION_ID="14.04"
-HOME_URL="http://www.ubuntu.com/"
-SUPPORT_URL="http://help.ubuntu.com/"
-BUG_REPORT_URL="http://bugs.launchpad.net/ubuntu/"
-```
+   ```
+   $ cat /etc/*release*
+   DISTRIB_ID=Ubuntu
+   DISTRIB_RELEASE=14.04
+   DISTRIB_CODENAME=trusty
+   DISTRIB_DESCRIPTION="Ubuntu 14.04.5 LTS"
+   NAME="Ubuntu"
+   VERSION="14.04.5 LTS, Trusty Tahr"
+   ID=ubuntu
+   ID_LIKE=debian
+   PRETTY_NAME="Ubuntu 14.04.5 LTS"
+   VERSION_ID="14.04"
+   HOME_URL="http://www.ubuntu.com/"
+   SUPPORT_URL="http://help.ubuntu.com/"
+   BUG_REPORT_URL="http://bugs.launchpad.net/ubuntu/"
+   ```
 
-
+# Flexible Origin Instalation Procedure with Apache2
 1. Install Packages
    ```
     sudo aptitude install apache2 python3.4 python3.4-venv python-virtualenv libapache2-mod-wsgi-py3
