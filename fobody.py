@@ -277,7 +277,7 @@ class FOBody(object):
         Returns:
         response -- Flask response object
         """
-        supported_formats = ['zip', 'gzip', 'bzip', 'defalte', 'br']
+        supported_formats = ['zip', 'gzip', 'bzip', 'deflate', 'br']
         if compresstype not in supported_formats:
             m = 'Compress format is not allowed: {}. '
             m += 'Supported formats are: {}'
