@@ -5,7 +5,7 @@
 > uname -a
 Linux ip-172-31-36-246 3.13.0-141-generic #190-Ubuntu SMP Fri Jan 19 12:52:38 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
 
-```
+> ```
 $ cat /etc/*release*
 DISTRIB_ID=Ubuntu
 DISTRIB_RELEASE=14.04
