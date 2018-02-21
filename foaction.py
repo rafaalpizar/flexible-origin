@@ -19,11 +19,18 @@ from foerrors import HeaderError
 class FOAction(object):
     """Object to handle server manipulation actions in Flexible Origin"""
 
-    def __init__(self):
+    def __init__(self, log_object=None):
         """Init the object
-        Nothing to do yet
+
+        Keywords:
+        log_object - logger object
+
+        Returns:
+        None
         """
-        pass
+        self._log_obj = log_object
+        self._logger = self._log_obj.logger
+        self._logger.debug('Running Flexible Origin action')
 
     def delay(self, request, response, delay_value):
         """Delays the response by applying a sleep timer.
