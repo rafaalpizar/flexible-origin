@@ -353,7 +353,7 @@ class FOBody(object):
         response -- Flask response object
         """
         # TODO: Refector code
-        _user_path = 'user/'
+        _user_path = '{}/user/'.format(prog_path)
         if "true" in urlpath:
             if request.path:
                 validpath = re.sub('/$', "/index.html", request.path)
