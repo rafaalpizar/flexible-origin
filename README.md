@@ -106,7 +106,7 @@ Linux ip-172-31-36-246 3.13.0-141-generic #190-Ubuntu SMP Fri Jan 19 12:52:38 UT
      WSGIDaemonProcess flexorigin user=ubuntu group=ubuntu threads=5
 
      <VirtualHost *:80>
-       ServerName ec2-54-174-117-235.compute-1.amazonaws.com
+       # ServerName ec2-54-174-117-235.compute-1.amazonaws.com
        ServerAdmin webmaster@localhost
        DocumentRoot /var/www/html
 
@@ -127,7 +127,7 @@ Linux ip-172-31-36-246 3.13.0-141-generic #190-Ubuntu SMP Fri Jan 19 12:52:38 UT
        <VirtualHost *:443>
 	 ServerAdmin webmaster@localhost
 	 DocumentRoot /var/www/html
-	 ServerName ec2-54-174-117-235.compute-1.amazonaws.com
+	 # ServerName ec2-54-174-117-235.compute-1.amazonaws.com
 	 ErrorLog ${APACHE_LOG_DIR}/fo-error.log
 	 CustomLog ${APACHE_LOG_DIR}/fo-access.log combined
 
