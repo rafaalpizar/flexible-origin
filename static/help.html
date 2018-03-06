@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Help | Flexible-Origin</title>
+    <title>Help | XAP Flexible-Origin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
@@ -16,7 +16,7 @@
 <div class="container">
 
 <div class="page-header">
-    <h1>Flexible-Origin <small>Help Page</small></h1>
+    <h1>XAP | Flexible-Origin <small>Help Page</small></h1>
 </div>
 
 <!-- Bootstrap FAQ - START -->
@@ -28,10 +28,10 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">What is Flexible Origin?</a>
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#aboutFO">What is Flexible Origin?</a>
                 </h4>
             </div>
-            <div id="collapseOne" class="panel-collapse collapse in">
+            <div id="aboutFO" class="panel-collapse collapse in">
                 <div class="panel-body">
                     <strong>Flexible Origin</strong> is a web server that can be controlled directly from the client using special request headers called x-fo headers.<br/>It is the best way to reproduce specific responses without having to manipulate weird Apache or Nginx configurations.
                 </div>
@@ -40,12 +40,42 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Any use cases?</a>
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#aboutUserGuide">About this user guide</a>
                 </h4>
             </div>
-            <div id="collapseTwo" class="panel-collapse collapse">
+            <div id="aboutUserGuide" class="panel-collapse collapse">
                 <div class="panel-body">
-                    TONS. Your imagination is the limit. 
+                    This document shows all the x-fo headers available to control the Flexible Origin, you might want to combine them to achieve a specific response, be careful not to step over your own foot (like invoking two actions that modify the body of the response). The user guide is divided into the following sections:
+                    <br/><br/><ul><li><strong>X-FO Response Code:</strong> explain all the X-FO headers that act over the response status code.</li>
+                    <li><strong>X-FO Responde Body:</strong> explain all the X-FO headers that act over the response body.</li>
+                    <li><strong>X-FO Response Headers:</strong> explain all the X-FO headers that act over the response headers.</li>
+                    <li><strong>X-FO Action Headers:</strong> explain all those actions that don't have to do with response code, body, or headers (eg. Add a delay on the response coming from the origin).</li>
+                    <li><strong>Flexible Origin APIs:</strong> explain all the APIs available to control other Flexible Origin characteristics (like uploading files, etc.).</li>
+                    <li><strong>Other useful information:</strong> explain other useful tips you might want to know about Flexible Origin.</li></ul>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#bugs">Report bugs or ask for enhancements?</a>
+                </h4>
+            </div>
+            <div id="bugs" class="panel-collapse collapse">
+                <div class="panel-body">
+                    We are working on a special Jira space to report bugs or ask for enhancements for any XAP project. In the meantime please send your notes to <a href="mailto:xap@akamai.com">xap@akamai.com</a> and we will take care.
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#aboutXAP">About XAP</a>
+                </h4>
+            </div>
+            <div id="aboutXAP" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <strong>X-Akamai-Projects</strong> (XAP) is a Service Delivery initiative that groups SAs that want to innovate and work on side projects with global impact. XAP is not about individuals is about community. Flexible Origin is one product of this effort. More information <a href="https://ac.akamai.com/groups/x-akamai-projects" target="_blank">here</a>.
                 </div>
             </div>
         </div>
@@ -54,10 +84,10 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">x-fo-statuscode-define</a>
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#x-fo-statuscode-define">x-fo-statuscode-define</a>
                 </h4>
             </div>
-            <div id="collapseThree" class="panel-collapse collapse">
+            <div id="x-fo-statuscode-define" class="panel-collapse collapse">
                 <div class="panel-body">
                     <table>
                       <col width="120">
@@ -87,17 +117,17 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">x-fo-body-showrequestheaders</a>
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#x-fo-body-showrequestheaders">x-fo-body-showrequestheaders</a>
                 </h4>
             </div>
-            <div id="collapseFour" class="panel-collapse collapse">
+            <div id="x-fo-body-showrequestheaders" class="panel-collapse collapse">
                 <div class="panel-body">
                     <table>
                       <col width="120">
                       <col width="400">
                       <tr>
                         <td valign="top"><strong>Goal</strong></td>
-                        <td valign="top">Show the request headers received by the origin in the body of the response in the format defined</td>
+                        <td valign="top">Show the request headers received by the origin</td>
                       </tr>
                       <tr>
                         <td valign="top"><strong>Header name</strong></td>
@@ -105,7 +135,7 @@
                       </tr>
                       <tr>
                         <td valign="top"><strong>Value syntax</strong></td>
-                        <td valign="top">{ json | text | xml }</td>
+                        <td valign="top">{ json | plain | html | xml }</td>
                       </tr>
                       <tr>
                         <td valign="top"><strong>Example</strong></td>
@@ -119,17 +149,17 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">x-fo-body-showrequestbody</a>
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#x-fo-body-showrequestbody">x-fo-body-showrequestbody</a>
                 </h4>
             </div>
-            <div id="collapseFive" class="panel-collapse collapse">
+            <div id="x-fo-body-showrequestbody" class="panel-collapse collapse">
                 <div class="panel-body">
                     <table>
                       <col width="120">
                       <col width="400">
                       <tr>
                         <td valign="top"><strong>Goal</strong></td>
-                        <td valign="top">Show the request body received by the origin in the body of the response in the format defined</td>
+                        <td valign="top">Show the request body received by the origin</td>
                       </tr>
                       <tr>
                         <td valign="top"><strong>Header name</strong></td>
@@ -151,10 +181,10 @@
         <div class="panel panel-default">  
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSix">x-fo-body-info</a>
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#x-fo-body-info">x-fo-body-info</a>
                 </h4>
             </div>
-            <div id="collapseSix" class="panel-collapse collapse">
+            <div id="x-fo-body-info" class="panel-collapse collapse">
                 <div class="panel-body">
                     <table>
                       <col width="120">
@@ -169,7 +199,7 @@
                       </tr>
                       <tr>
                         <td valign="top"><strong>Value syntax</strong></td>
-                        <td valign="top">{ json | text | xml }</td>
+                        <td valign="top">{ json | plain | html | xml | help }</td>
                       </tr>
                       <tr>
                         <td valign="top"><strong>Example</strong></td>
@@ -183,10 +213,10 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">x-fo-body-compressed</a>
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#x-fo-body-compressed">x-fo-body-compressed</a>
                 </h4>
             </div>
-            <div id="collapseSeven" class="panel-collapse collapse">
+            <div id="x-fo-body-compressed" class="panel-collapse collapse">
                 <div class="panel-body">
                     <table>
                       <col width="120">
@@ -215,10 +245,42 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseEight">x-fo-body-binary</a>
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#x-fo-body-image">x-fo-body-image</a>
                 </h4>
             </div>
-            <div id="collapseEight" class="panel-collapse collapse">
+            <div id="x-fo-body-image" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <table>
+                      <col width="120">
+                      <col width="400">
+                      <tr>
+                        <td valign="top"><strong>Goal</strong></td>
+                        <td valign="top">Return an image in the selected format</td>
+                      </tr>
+                      <tr>
+                        <td valign="top"><strong>Header name</strong></td>
+                        <td valign="top">x-fo-body-image</td>
+                      </tr>
+                      <tr>
+                        <td valign="top"><strong>Value syntax</strong></td>
+                        <td valign="top">{ png | gif | jpeg }</td>
+                      </tr>
+                      <tr>
+                        <td valign="top"><strong>Example</strong></td>
+                        <td valign="top">x-fo-body-image: png</td>
+                      </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#x-fo-body-binary">x-fo-body-binary</a>
+                </h4>
+            </div>
+            <div id="x-fo-body-binary" class="panel-collapse collapse">
                 <div class="panel-body">
                     <table>
                       <col width="120">
@@ -247,10 +309,10 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseNine">x-fo-body-text</a>
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#x-fo-body-text">x-fo-body-text</a>
                 </h4>
             </div>
-            <div id="collapseNine" class="panel-collapse collapse">
+            <div id="x-fo-body-text" class="panel-collapse collapse">
                 <div class="panel-body">
                     <table>
                       <col width="120">
@@ -279,17 +341,49 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTen">x-fo-body-path</a>
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#x-fo-body-loglines">x-fo-body-loglines</a>
                 </h4>
             </div>
-            <div id="collapseTen" class="panel-collapse collapse">
+            <div id="x-fo-body-loglines" class="panel-collapse collapse">
                 <div class="panel-body">
                     <table>
                       <col width="120">
                       <col width="400">
                       <tr>
                         <td valign="top"><strong>Goal</strong></td>
-                        <td valign="top">When "true" the Flexible Origin will respect the incoming path to look the asset</td>
+                        <td valign="top">Return selected amount of log lines (the tail of the log file). You can use these log lines to check headers received by the flexible origin and some other information (let us know if you want to see any special information in the logs)</td>
+                      </tr>
+                      <tr>
+                        <td valign="top"><strong>Header name</strong></td>
+                        <td valign="top">x-fo-body-loglines</td>
+                      </tr>
+                      <tr>
+                        <td valign="top"><strong>Value syntax</strong></td>
+                        <td valign="top">{ Number_of_log_lines }</td>
+                      </tr>
+                      <tr>
+                        <td valign="top"><strong>Example</strong></td>
+                        <td valign="top">x-fo-body-loglines: 10</td>
+                      </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#x-fo-body-path">x-fo-body-path</a>
+                </h4>
+            </div>
+            <div id="x-fo-body-path" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <table>
+                      <col width="120">
+                      <col width="400">
+                      <tr>
+                        <td valign="top"><strong>Goal</strong></td>
+                        <td valign="top">When "true" the Flexible Origin will respect the path written in the URL. Make sure you uploaded an asset on that path before using this x-fo header. Default value is 'false'</td>
                       </tr>
                       <tr>
                         <td valign="top"><strong>Header name</strong></td>
@@ -312,17 +406,17 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseEleven">x-fo-header-add</a>
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#x-fo-header-add">x-fo-header-add</a>
                 </h4>
             </div>
-            <div id="collapseEleven" class="panel-collapse collapse">
+            <div id="x-fo-header-add" class="panel-collapse collapse">
                 <div class="panel-body">
                     <table>
                       <col width="120">
                       <col width="400">
                       <tr>
                         <td valign="top"><strong>Goal</strong></td>
-                        <td valign="top">Add header in the response from origin. You must define a different number for each header you are trying to set</td>
+                        <td valign="top">Add a header in the response from origin. You must define a different number for each header you are trying to set</td>
                       </tr>
                       <tr>
                         <td valign="top"><strong>Header name</strong></td>
@@ -344,42 +438,10 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwelve">x-fo-header-remove</a>
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#x-fo-header-addcookie">x-fo-header-addcookie</a>
                 </h4>
             </div>
-            <div id="collapseTwelve" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <table>
-                      <col width="120">
-                      <col width="400">
-                      <tr>
-                        <td valign="top"><strong>Goal</strong></td>
-                        <td valign="top">Remove header coming from the origin in the response</td>
-                      </tr>
-                      <tr>
-                        <td valign="top"><strong>Header name</strong></td>
-                        <td valign="top">x-fo-header-remove</td>
-                      </tr>
-                      <tr>
-                        <td valign="top"><strong>Value syntax</strong></td>
-                        <td valign="top">{ header_name }</td>
-                      </tr>
-                      <tr>
-                        <td valign="top"><strong>Example</strong></td>
-                        <td valign="top">x-fo-header-add-1: Content-Type</td>
-                      </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThirteen">x-fo-header-addcookie</a>
-                </h4>
-            </div>
-            <div id="collapseThirteen" class="panel-collapse collapse">
+            <div id="x-fo-header-addcookie" class="panel-collapse collapse">
                 <div class="panel-body">
                     <table>
                       <col width="120">
@@ -394,11 +456,11 @@
                       </tr>
                       <tr>
                         <td valign="top"><strong>Value syntax</strong></td>
-                        <td valign="top">{ header_name=header_value }</td>
+                        <td valign="top">{ cookie }</td>
                       </tr>
                       <tr>
                         <td valign="top"><strong>Example</strong></td>
-                        <td valign="top">x-fo-header-modify-1: thisIsAcookie=IamACookie</td>
+                        <td valign="top">x-fo-header-addcookie-1: thisIsAcookie=IamACookie</td>
                       </tr>
                     </table>
                 </div>
@@ -408,17 +470,17 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFourteen">x-fo-header-modify</a>
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#x-fo-header-modify">x-fo-header-modify</a>
                 </h4>
             </div>
-            <div id="collapseFourteen" class="panel-collapse collapse">
+            <div id="x-fo-header-modify" class="panel-collapse collapse">
                 <div class="panel-body">
                     <table>
                       <col width="120">
                       <col width="400">
                       <tr>
                         <td valign="top"><strong>Goal</strong></td>
-                        <td valign="top">Modify a reponse header coming from the origin. You must define a different number for each cookie you are trying to set</td>
+                        <td valign="top">Modify a reponse header coming from the origin. You must define a different number for each header you are trying to modify. The 'Server' header can't be modified by the moment. Let us know if this is something you need</td>
                       </tr>
                       <tr>
                         <td valign="top"><strong>Header name</strong></td>
@@ -426,43 +488,11 @@
                       </tr>
                       <tr>
                         <td valign="top"><strong>Value syntax</strong></td>
-                        <td valign="top">{ cookie_value }</td>
+                        <td valign="top">{ header_name=header_new_value }</td>
                       </tr>
                       <tr>
                         <td valign="top"><strong>Example</strong></td>
-                        <td valign="top">x-fo-header-addcookie-1: Cache-Control=max-age=0s</td>
-                      </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFifteen">x-fo-header-basicauth</a>
-                </h4>
-            </div>
-            <div id="collapseFifteen" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <table>
-                      <col width="120">
-                      <col width="400">
-                      <tr>
-                        <td valign="top"><strong>Goal</strong></td>
-                        <td valign="top">Enable basic authentication</td>
-                      </tr>
-                      <tr>
-                        <td valign="top"><strong>Header name</strong></td>
-                        <td valign="top">x-fo-header-basicauth</td>
-                      </tr>
-                      <tr>
-                        <td valign="top"><strong>Value syntax</strong></td>
-                        <td valign="top">{ user=yourUserName; pass=yourPassword }</td>
-                      </tr>
-                      <tr>
-                        <td valign="top"><strong>Example</strong></td>
-                        <td valign="top">x-fo-header-basicauth: user=xap; pass=thisisasecret</td>
+                        <td valign="top">x-fo-header-modify-1: Content-Length=1000</td>
                       </tr>
                     </table>
                 </div>
@@ -473,10 +503,10 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSixteen">x-fo-action-delay</a>
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#x-fo-action-delay">x-fo-action-delay</a>
                 </h4>
             </div>
-            <div id="collapseSixteen" class="panel-collapse collapse">
+            <div id="x-fo-action-delay" class="panel-collapse collapse">
                 <div class="panel-body">
                     <table>
                       <col width="120">
@@ -502,14 +532,14 @@
             </div>
         </div>
 
-        <div class="faqHeader">FO API</div>
+        <div class="faqHeader">Flexible Origin APIs</div>
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSeventeen">Push asset</a>
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#PushAsset">Push asset</a>
                 </h4>
             </div>
-            <div id="collapseSeventeen" class="panel-collapse collapse">
+            <div id="PushAsset" class="panel-collapse collapse">
                 <div class="panel-body">
                     <table>
                       <col width="120">
@@ -520,7 +550,7 @@
                       </tr>
                       <tr>
                         <td valign="top"><strong>Endpoint</strong></td>
-                        <td valign="top">/pushasset</td>
+                        <td valign="top">/x-fo/pushasset</td>
                       </tr>
                       <tr>
                         <td valign="top"><strong>Method</strong></td>
@@ -528,11 +558,32 @@
                       </tr>
                       <tr>
                         <td valign="top"><strong>Parameters</strong></td>
-                        <td valign="top">Any of:<br/>Query String - path<br/>Form post - path</td>
+                        <td valign="top">Query String: path=value<br/>(define the path where you´d like to place the asset, don´t use slash at the beginning of the path)</td>
                       </tr>
                     <tr>
                         <td valign="top"><strong>Example</strong></td>
-                        <td valign="top">POST www.yourflexibleorigin.com/pushasset?path=your/path and file in the body</td>
+                        <td valign="top">POST www.yourflexibleorigin.com/pushasset?path=your/path<br/>Attach the file in the body</td>
+                      </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="faqHeader">Other useful information</div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#UploadPage">Upload Page</a>
+                </h4>
+            </div>
+            <div id="UploadPage" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <table>
+                      <col width="120">
+                      <col width="400">
+                      <tr>
+                        <td valign="top"><strong>Upload Page</strong></td>
+                        <td valign="top">Instead of calling the push asset API you can also use an upload page that is part of each Flexible Origin instance. Just click <a href="/x-fo/upload" target="_blank">here</a>.</td>
                       </tr>
                     </table>
                 </div>
@@ -542,38 +593,63 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseEigthteen">Download Origin Logs</a>
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#AllowedMethods">Allowed methods</a>
                 </h4>
             </div>
-            <div id="collapseEigthteen" class="panel-collapse collapse">
+            <div id="AllowedMethods" class="panel-collapse collapse">
                 <div class="panel-body">
                     <table>
                       <col width="120">
                       <col width="400">
                       <tr>
-                        <td valign="top"><strong>Goal</strong></td>
-                        <td valign="top">This API allow the user to download the log file of the flexible origin</td>
-                      </tr>
-                      <tr>
-                        <td valign="top"><strong>Endpoint</strong></td>
-                        <td valign="top">/getlog</td>
-                      </tr>
-                      <tr>
-                        <td valign="top"><strong>Method</strong></td>
-                        <td valign="top">GET</td>
-                      </tr>
-                      <tr>
-                        <td valign="top"><strong>Parameters</strong></td>
-                        <td valign="top">Query String - format<br/>Where "format" can be "plain" or "download" file</td>
-                      </tr>
-                      <tr>
-                        <td valign="top"><strong>Example</strong></td>
-                        <td valign="top">GET www.yourflexibleorigin.com/getlog?format=plain</td>
+                        <td valign="top"><strong>Allowed methods</strong></td>
+                        <td valign="top">Flexible Origin allows the following methods: GET, POST, PUT, DELETE, OPTIONS, and HEAD</td>
                       </tr>
                     </table>
                 </div>
             </div>
         </div>
+
+        <div class="panel panel-default">        
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#ReservedPaths">Reserved paths</a>
+                </h4>
+            </div>
+            <div id="ReservedPaths" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <table>
+                      <col width="120">
+                      <col width="400">
+                      <tr>
+                        <td valign="top"><strong>Reserved paths</strong></td>
+                        <td valign="top">Flexible Origin reserves the following paths for internal processing: /static/* and /x-fo/*.</td>
+                      </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">        
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#CombinedHeaders">Combined headers</a>
+                </h4>
+            </div>
+            <div id="CombinedHeaders" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <table>
+                      <col width="120">
+                      <col width="400">
+                      <tr>
+                        <td valign="top"><strong>Combined headers</strong></td>
+                        <td valign="top">All x-fo headers only work over a specific section of the response or over a specific action. This means you might need to combine more than one x-fo header to achieve a goal. For example, if you want to get an image that is displayed in your browser you might want to combine x-fo-body-image and also x-fo-header-add to include 'Content-Type: image/png'. This gives you A LOT of flexibility (that's why it's called Flexible Origin, duh!)</td>
+                      </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 
@@ -587,7 +663,7 @@
         font-family: 'Glyphicons Halflings';
         content: "\e072"; /* "play" icon */
         float: right;
-        color: #F58723;
+        color: #029dcc;
         font-size: 18px;
         line-height: 22px;
         /* rotate "play" icon from > (right arrow) to down arrow */
@@ -605,7 +681,13 @@
         -ms-transform: rotate(90deg);
         -o-transform: rotate(90deg);
         transform: rotate(90deg);
-        color: #454444;
+        color: #01bcf0;
+    }
+
+    .panel-default>.panel-heading {
+        color: #029dcc;
+        background-color: #01bcf00a;
+        border-color: #029dcc;
     }
 </style>
 
