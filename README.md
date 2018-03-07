@@ -21,7 +21,7 @@ Linux ip-172-31-36-246 3.13.0-141-generic #190-Ubuntu SMP Fri Jan 19 12:52:38 UT
 # Flexible Origin Instalation Procedure with Apache2
 1. Install Packages
    ```
-    sudo aptitude install apache2 python3.4 python3.4-venv python-virtualenv libapache2-mod-wsgi-py3
+    sudo aptitude install apache2 python3.4 python3.4-venv python-virtualenv libapache2-mod-wsgi-py3 libapache2-mod-security2
    ```
 
 2. Create directories
@@ -70,6 +70,7 @@ Linux ip-172-31-36-246 3.13.0-141-generic #190-Ubuntu SMP Fri Jan 19 12:52:38 UT
 9. Apache modules enable
    ```
     $ a2enmod wsgi ssl
+    $ a2enmod security2
     $ service apache2 stop
     $ service apache2 start
    ```
@@ -102,6 +103,11 @@ Linux ip-172-31-36-246 3.13.0-141-generic #190-Ubuntu SMP Fri Jan 19 12:52:38 UT
 
 12. Apache VHost configuration
     ```
+     <IfModule security2_module>
+       # Default Flexible Origin Server Header
+       SecServerSignature "Flexible-Origin"
+     </IfModule>
+
      # Python virtual environment
      WSGIDaemonProcess flexorigin user=ubuntu group=ubuntu threads=5
 
@@ -157,4 +163,3 @@ Linux ip-172-31-36-246 3.13.0-141-generic #190-Ubuntu SMP Fri Jan 19 12:52:38 UT
      </VirtualHost>
      </IfModule>
     ```
-
