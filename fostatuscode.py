@@ -9,6 +9,7 @@ Version: 1.0
 
 Change log:
 2017-11-24 - First version
+2021-03-10 - Increase range of possible status codes from 0-599 to 0-999 - Rafael López
 '''
 
 from foerrors import HeaderError
@@ -18,7 +19,7 @@ class FOStatusCode(object):
     """Object to handle Response Status Code in Flexible Origin"""
 
     _MIN_STATUS_VALUE = 0
-    _MAX_STATUS_VALUE = 599
+    _MAX_STATUS_VALUE = 999
 
     def __init__(self, log_object=None):
         """Init the object
