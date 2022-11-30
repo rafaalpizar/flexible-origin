@@ -25,7 +25,7 @@ from focontroller import FOController
 from fologger import FOLogger
 from foerrors import HeaderError
 import os
-from werkzeug import secure_filename
+from werkzeug.utils import secure_filename
 from random import randint
 
 # Define the script's root path
