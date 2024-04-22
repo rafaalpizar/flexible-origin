@@ -8,6 +8,7 @@ Author: XAP
 Version: 1.0
 
 Change log:
+2023-04-22 - Removed x-fo-body-path functionality
 2017-12-04 - Adding TechJam2017 code
 2017-11-29 - First version
 '''
@@ -340,35 +341,4 @@ class FOBody(object):
         temp_response = send_file(asset)
         temp_response.direct_passthrough = False
         response.data = temp_response.data
-        return response
-
-    def path(self, request, response, urlpath):
-        """Fill the respose body with the request headers
-        Keyword Arguments:
-        request  -- request object
-        response -- response onject
-        urlpath   -- str, define if urlpath will be used
-
-        Returns:
-        response -- Flask response object
-        """
-        # TODO: Refector code
-        _user_path = '{}/user/'.format(prog_path)
-        if "true" in urlpath:
-            if request.path:
-                validpath = re.sub('/$', "/index.html", request.path)
-            if os.path.exists(_user_path+validpath) and \
-                    not os.path.isdir(_user_path+validpath):
-                temp_response = send_file(_user_path+validpath)
-                # TODO: Temporal fix
-                temp_response.direct_passthrough = False
-                response.data = temp_response.data
-                # Minimum request headers required
-                response.headers["Content-Type"] = \
-                    temp_response.headers["Content-Type"]
-            else:
-                m = 'The path {} was not found. '
-                m += 'You might want to upload it first'
-                m = m.format(_user_path+validpath)
-                raise HeaderError(m)
         return response

@@ -15,6 +15,7 @@ pip install --user flask
 Version: 1.0
 
 Change log:
+2023-04-22 - Removed upload code
 2017-12-04 - Adding TechJam code
 2017-11-29 - First version
 '''
@@ -184,32 +185,3 @@ def flexorigin(subpath=None):
     else:
         http_response.headers['X-FO-RefID'] = referenceid
     return http_response
-
-
-@app.route('/x-fo/pushasset', methods=['GET', 'POST'])
-def uploader():
-    _user_path = '{}/user/'.format(prog_path)
-    # TODO: Refactor code
-    if request.method == 'POST':
-        savepath = _user_path
-        f = request.files['file']
-        if request.args.get('filename'):
-            f.filename = str(request.args.get('filename'))
-        if request.form['path']:
-            savepath = _user_path + str(request.form['path']) + "/"
-            if not os.path.exists(savepath):
-                os.makedirs(savepath)
-        if request.args.get('path'):
-            savepath = _user_path + str(request.args.get('path')) + "/"
-            if not os.path.exists(savepath):
-                os.makedirs(savepath)
-        f.save(savepath + secure_filename(f.filename))
-    return redirect(url_for('upload_file'))
-
-
-@app.route('/x-fo/upload')
-def upload_file():
-    host = request.headers['host']
-    path = url_for('uploader')
-    return render_template('upload.html', host=host,
-                           path=path)
